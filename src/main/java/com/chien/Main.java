@@ -2,7 +2,7 @@ package com.chien;
 
 import javax.swing.*;
 
-import com.chien.FlightControl.TabFrame;
+import com.chien.flightcontrol.TabFrame;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;

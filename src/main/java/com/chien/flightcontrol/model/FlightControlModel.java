@@ -1,13 +1,13 @@
-package com.chien.FlightControl.model;
+package com.chien.flightcontrol.model;
 
 import java.util.List;
 import java.util.ArrayList;
 
-public class ControlModel {
+public class FlightControlModel {
     private List<Node> nodes = new ArrayList<>();
     private List<Edge> edges = new ArrayList<>();
 
-    public ControlModel() {
+    public FlightControlModel() {
     }
 
     public void addNode(Node node) {

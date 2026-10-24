@@ -1,4 +1,4 @@
-package com.chien.FlightControl;
+package com.chien.flightcontrol;
 
 /**
  * FileTransferHandler

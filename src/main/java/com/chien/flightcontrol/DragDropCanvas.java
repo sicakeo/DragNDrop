@@ -1,4 +1,4 @@
-package com.chien.FlightControl;
+package com.chien.flightcontrol;
 
 import javax.swing.*;
 public class DragDropCanvas extends JPanel {

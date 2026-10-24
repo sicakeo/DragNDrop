@@ -1,6 +1,8 @@
-package com.chien.FlightControl;
+package com.chien.flightcontrol;
 
 import javax.swing.*;
+
+import com.chien.flightcontrol.subtab.PitchSubTab;
 
 
 public class TabFrame {
@@ -14,12 +16,7 @@ public class TabFrame {
         frame.setVisible(true);
 
         JTabbedPane tabbedPane = new JTabbedPane();
-
-        SubTab subTab = new SubTab();
-        tabbedPane.addTab("Sub Tab 1", subTab);
-
-        SubTab subTab2 = new SubTab();
-        tabbedPane.addTab("Sub Tab 2", subTab2);
+        tabbedPane.addTab("Sub Tab 1", new PitchSubTab().build());
 
         frame.add(tabbedPane);
     }

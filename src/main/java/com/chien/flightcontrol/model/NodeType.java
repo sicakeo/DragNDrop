@@ -1,4 +1,4 @@
-package com.chien.FlightControl.model;
+package com.chien.flightcontrol.model;
 
 public enum NodeType {
         SOURCE("Source", 0, 1),

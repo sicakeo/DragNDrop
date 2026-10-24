@@ -1,4 +1,4 @@
-package com.chien.FlightControl.model;
+package com.chien.flightcontrol.model;
 
 import java.awt.Point;
 import java.awt.Rectangle;

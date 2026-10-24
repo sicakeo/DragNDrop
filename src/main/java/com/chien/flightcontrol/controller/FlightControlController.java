@@ -1,25 +1,25 @@
-package com.chien.FlightControl.controller;
-
-import com.chien.FlightControl.model.ControlModel;
-import com.chien.FlightControl.ControlView;
-import com.chien.FlightControl.DragDropCanvas;
-import com.chien.FlightControl.FileTransferHandler;
-import com.chien.FlightControl.model.NodeType;
+package com.chien.flightcontrol.controller;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import com.chien.flightcontrol.DragDropCanvas;
+import com.chien.flightcontrol.FileTransferHandler;
+import com.chien.flightcontrol.model.FlightControlModel;
+import com.chien.flightcontrol.model.NodeType;
+import com.chien.flightcontrol.view.FlightControlView;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 
-public class ControlController {
-    public ControlController() {
+public class FlightControlController {
+    public FlightControlController() {
 
     }   
 
     public void start(JPanel mainPanel) {
-        ControlModel model = new ControlModel();
-        ControlView view = new ControlView(this, model);
+        FlightControlModel model = new FlightControlModel();
+        FlightControlView view = new FlightControlView(this, model);
 
         Component pallete = buildPallete(view);
         DragDropCanvas dragDropCanvas = new DragDropCanvas();
@@ -29,7 +29,7 @@ public class ControlController {
         mainPanel.add(dragDropCanvas, BorderLayout.SOUTH);
     }
 
-    public static Component buildPallete(ControlView controlView) {
+    public static Component buildPallete(FlightControlView controlView) {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panel.setBackground(Color.GRAY);
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
