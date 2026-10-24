@@ -14,7 +14,7 @@ public final class Node {
     public Node(int id, NodeType type, int x, int y) {
         this.id = id;
         this.type = type;
-        this.bounds = new Rectangle(x, y);
+        this.bounds = new Rectangle(x, y, 80, 50);
         this.label = type.label;
         this.inputPorts = type.inPorts;
     }

@@ -22,5 +22,9 @@ public class FlightControlModel {
         Edge edge = new Edge(source, target, toInputIndex);
         edges.add(edge);
     }
+
+    public List<Node> getNodes() {
+        return nodes;
+    }
     
 }
