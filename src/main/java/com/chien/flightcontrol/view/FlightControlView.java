@@ -171,4 +171,50 @@ public class FlightControlView extends JPanel {
         to.x = (int)x;
         to.y = (int)y;
     }
+
+        // Small helpers used by the controller
+    public Node nodeAt(Point p) {
+        for (int i = model.getNodes().size() - 1; i >= 0; --i) { // top-most first
+            Node n = model.getNodes().get(i);
+            if (n.bounds.contains(p))
+                return n;
+        }
+        return null;
+    }
+
+    public Node nodeWithOutputAt(Point p) {
+        for (int i = model.getNodes().size() - 1; i >= 0; --i) {
+            Node n = model.getNodes().get(i);
+            if (n.getType().outPorts <= 0)
+                continue;
+            if (n.outputPortRect(PORT_SIZE * 2).contains(p))
+                return n; // *2 to PORT_SIZE for easier selecting
+        }
+        return null;
+    }
+
+     // Hit-test for a specific input port, not just the node.
+    public static final class InputHit {
+        public final Node node;
+        public final int portIndex;
+
+        public InputHit(Node node, int portIndex) {
+            this.node = node;
+            this.portIndex = portIndex;
+        }
+    }
+
+    public InputHit inputPortAt(Point p) {
+        // Iterate front-to-back so we hit the visually top-most node first
+        for (int ni = model.getNodes().size() - 1; ni >= 0; --ni) {
+            Node n = model.getNodes().get(ni);
+            int inCount = Math.max(n.getInputPortCount(), n.getType().inPorts);
+            for (int pi = 0; pi < inCount; ++pi) {
+                if (n.inputPortRect(pi, PORT_SIZE).contains(p)) {
+                    return new InputHit(n, pi);
+                }
+            }
+        }
+        return null;
+    }
 }

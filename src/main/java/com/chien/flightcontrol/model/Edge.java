@@ -5,39 +5,44 @@ import java.awt.Point;
 public class Edge {
         public int toInputIndex; // Index of the input port on the target node
 
-        public Point fromPoint;
-        public Point toPoint;
+        public Node fromNode;
+        public Node toNode;
 
-    public Edge(Node source, Node target, int toInputIndex) {
-        if (source == null || target == null || source == target) {
-            throw new IllegalArgumentException("Source and target nodes cannot be null or identical.");
-        }
-        this.fromPoint = source.outputPort();
-        this.toPoint = target.inputPort(toInputIndex);
-        this.toInputIndex = toInputIndex;
-        updateFromPoint(this.fromPoint);
-    }
+        private Point fromPoint;
+        private Point toPoint;
 
-    public Edge(Point fromPoint, Point toPoint, int toInputIndex) {
-        if (fromPoint == null || toPoint == null || fromPoint == toPoint) {
-            throw new IllegalArgumentException("From and to points cannot be null or identical.");
+    public Edge(Node fromNode, Node toNode, int toInputIndex) {
+        if (fromNode == null || toNode == null || fromNode == toNode) {
+            throw new IllegalArgumentException("From and to nodes cannot be null or identical.");
         }
 
         if (toInputIndex < 0) {
             throw new IllegalArgumentException("toInputIndex cannot be negative.");
         }
-        this.fromPoint = fromPoint;
-        this.toPoint = toPoint;
+        this.fromNode = fromNode;
+        this.toNode = toNode;
         this.toInputIndex = toInputIndex;
-        updateFromPoint(this.fromPoint);
+        updatePoints();
     }
 
-    public void updateFromPoint(Point fromPoint) {
-        if (fromPoint == null) {
-            throw new IllegalArgumentException("From point cannot be null.");
+     public void updatePoints() {
+            // Always recompute based on current node bounds & input count
+            fromPoint = fromNode.outputPort();
+
+            int n = Math.max(1, toNode.getInputPortCount());
+            int idx = toInputIndex;
+            if (idx < 0) idx = 0;
+            if (idx >= n) idx = n - 1;
+
+            toPoint = toNode.inputPort(idx);
         }
-        this.fromPoint = fromPoint;
-        this.toPoint = new Point(toPoint.x, toPoint.y);
+
+    public Node getFromNode() {
+        return fromNode;
+    }
+
+    public Node getToNode() {
+        return toNode;
     }
 
     public Point getFromPoint() {

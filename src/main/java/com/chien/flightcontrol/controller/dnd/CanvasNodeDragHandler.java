@@ -26,7 +26,7 @@ public class CanvasNodeDragHandler extends MouseAdapter {
         Point p = e.getPoint();
         List<Node> nodes = model.getNodes();
         
-        // Loop in reverse so if nodes overlap, you grab the top one
+        // Loop in reverse so if nodes overlap, grab the top one
         for (int i = nodes.size() - 1; i >= 0; i--) {
             Node n = nodes.get(i);
             if (n.bounds.contains(p)) {
@@ -35,8 +35,8 @@ public class CanvasNodeDragHandler extends MouseAdapter {
                 dragOffset = new Point(p.x - n.bounds.x, p.y - n.bounds.y);
                 
                 // Bring the clicked node to the front of the Z-order
-                nodes.remove(i);
-                nodes.add(n);
+                nodes.remove(i); // Remove the node from its current position
+                nodes.add(n); // Add it to the end of the list, which represents the top of the Z-order
                 view.repaint();
                 break;
             }

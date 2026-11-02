@@ -11,6 +11,10 @@ public final class Node {
     private NodeType type;
     private int inputPorts = 0;
 
+    public int getInputPortCount() {
+        return inputPorts;
+    }
+
     public Node(int id, NodeType type, int x, int y) {
         this.id = id;
         this.type = type;
