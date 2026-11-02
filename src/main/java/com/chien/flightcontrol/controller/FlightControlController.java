@@ -23,13 +23,13 @@ public class FlightControlController extends JPanel {
         FlightControlModel model = new FlightControlModel();
         FlightControlView view = new FlightControlView(this, model);
         CanvasNodeDragHandler dragNodeHandler = new CanvasNodeDragHandler(model, view);
-
-        view.setTransferHandler(new CanvasDropHandler(model, view)); // Set a default TransferHandler for the view
+        
         view.addMouseListener(dragNodeHandler); // Add a mouse listener for dragging nodes
         view.addMouseMotionListener(dragNodeHandler); // Add a mouse motion listener for dragging nodes
+        view.setTransferHandler(new CanvasDropHandler(model, view)); // Set a default TransferHandler for the view
         
         Component pallete = buildPallete(view);
-        
+       
         mainPanel.add(pallete, BorderLayout.NORTH);
         mainPanel.add(view, BorderLayout.CENTER);
     }

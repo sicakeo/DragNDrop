@@ -16,7 +16,7 @@ public class FlightControlView extends JPanel {
     private FlightControlModel model;
     
     private Point previewTo;
-    private Point previewFrom;
+    private Node previewFrom;
 
      // Visual constants
     public static final int PORT_SIZE = 12;
@@ -37,11 +37,13 @@ public class FlightControlView extends JPanel {
         this.model = controlModel;
     }
     
-    public void setPreviewPoints(Point from, Point to) {
+    public void setPreviewPoints(Node from, Point to) {
         this.previewFrom = from;
         this.previewTo = to;
         repaint();
     }
+
+    
 
     public void clearPreviewPoints() {
         this.previewFrom = null;
@@ -86,8 +88,29 @@ public class FlightControlView extends JPanel {
         int textWidth = fm.stringWidth(node.getLabel());
         int textX = b.x + (b.width - textWidth) / 2;
         int textY = b.y + ((b.height - fm.getHeight()) / 2) + fm.getAscent();
-        
         g2.drawString(node.getLabel(), textX, textY);
+
+        // 4. Draw the output port if the node has one
+        if (previewFrom != null && previewFrom == node) {
+            // Draw ALL input ports based on the node's current dynamic inputPortCount.
+            // Fall back to the type's default if inputPortCount hasn't been bumped yet.
+            int inCount = Math.max(node.getInputPortCount(), node.getType().inPorts);
+            for (int i = 0; i < inCount; i++) {
+                Rectangle inR = node.inputPortRect(i, PORT_SIZE);
+                g2.setColor(new Color(90, 180, 255)); // blue inputs
+                g2.fillRect(inR.x, inR.y, inR.width, inR.height);
+                g2.setColor(Color.BLACK);
+                g2.drawRect(inR.x, inR.y, inR.width, inR.height);
+            }
+
+            if (node.getType().outPorts > 0) {
+                Rectangle outR = node.outputPortRect(PORT_SIZE);
+                g2.setColor(new Color(255, 120, 120)); // red outputs
+                g2.fillRect(outR.x, outR.y, outR.width, outR.height);
+                g2.setColor(Color.BLACK);
+                g2.drawRect(outR.x, outR.y, outR.width, outR.height);
+            }
+        }
     }
 
     private void drawEdge(Graphics2D g2, Edge edge) {
@@ -104,7 +127,7 @@ public class FlightControlView extends JPanel {
         if(previewFrom != null && previewTo != null) {
             g2.setColor(new Color(255, 180, 0));
             g2.setStroke(PREVIEW_STROKE);
-            drawOrthogonalEdge(g2, previewFrom, previewTo, 1);
+            drawOrthogonalEdge(g2, previewFrom.outputPort(), previewTo, 1);
             drawArrowHead(g2, previewTo);
         }
     }
