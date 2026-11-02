@@ -39,4 +39,12 @@ public class Edge {
         this.fromPoint = fromPoint;
         this.toPoint = new Point(toPoint.x, toPoint.y);
     }
+
+    public Point getFromPoint() {
+        return fromPoint;
+    }
+
+    public Point getToPoint() {
+        return toPoint;
+    }
 }

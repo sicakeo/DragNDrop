@@ -17,12 +17,12 @@ public class TabFrame {
         frame.setVisible(true);
 
         JTabbedPane tabbedPane = new JTabbedPane();
-        FlightControlTab flightControlTab = new FlightControlTab(this, "Flight Control");
-        tabbedPane.addTab("Flight Control", flightControlTab.getTabbedPane());
         
-        SubTab anotherSubTab = new SubTab(this, "Another Sub Tab");
-        tabbedPane.addTab("Another Sub Tab", anotherSubTab.getTabbedPane());
+        SubTab anotherSubTab = new SubTab(this, "System");
+        tabbedPane.addTab("System", anotherSubTab.getTabbedPane());
+
         
+    
         frame.add(tabbedPane, BorderLayout.CENTER);
     }
 }

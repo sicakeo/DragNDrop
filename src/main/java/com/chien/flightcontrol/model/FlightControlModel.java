@@ -26,5 +26,9 @@ public class FlightControlModel {
     public List<Node> getNodes() {
         return nodes;
     }
+
+    public List<Edge> getEdges() {
+        return edges;
+    }
     
 }
