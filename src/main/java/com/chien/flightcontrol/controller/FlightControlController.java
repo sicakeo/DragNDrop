@@ -21,7 +21,7 @@ public class FlightControlController extends JPanel {
 
         // Create the model and view
         FlightControlModel model = new FlightControlModel();
-        FlightControlView view = new FlightControlView(this, model);
+        FlightControlView view = new FlightControlView(model);
         CanvasNodeDragHandler dragNodeHandler = new CanvasNodeDragHandler(model, view);
         
         view.addMouseListener(dragNodeHandler); // Add a mouse listener for dragging nodes

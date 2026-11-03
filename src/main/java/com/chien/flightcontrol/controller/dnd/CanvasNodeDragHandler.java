@@ -78,7 +78,7 @@ public class CanvasNodeDragHandler extends MouseAdapter {
         Node onOut = view.nodeWithOutputAt(p);
         if (onOut != null) {
             connectFrom = onOut;
-            view.setPreviewPoints(connectFrom, view.nodeAt(p).outputPort());
+            view.setConnectionPreview(connectFrom, connectFrom.outputPort());
             return;
         }
 
@@ -121,7 +121,7 @@ public class CanvasNodeDragHandler extends MouseAdapter {
                             "Connection Error",
                             JOptionPane.ERROR_MESSAGE);
                     connectFrom = null;
-                    view.clearPreviewPoints();
+                    view.clearConnectionPreview();
                     return;
                 }
 
@@ -134,7 +134,7 @@ public class CanvasNodeDragHandler extends MouseAdapter {
                                 "Connection Error",
                                 JOptionPane.ERROR_MESSAGE);
                         connectFrom = null;
-                        view.clearPreviewPoints();
+                        view.clearConnectionPreview();
                         return;
                     }
                 }
@@ -147,7 +147,7 @@ public class CanvasNodeDragHandler extends MouseAdapter {
             }
 
             connectFrom = null;
-            view.clearPreviewPoints();
+            view.clearConnectionPreview();
             return;
         }
 
@@ -194,7 +194,7 @@ public class CanvasNodeDragHandler extends MouseAdapter {
 
         if (connectFrom != null) {
             // Update the preview of a potential connection
-            view.setPreviewPoints(connectFrom, p);
+            view.setConnectionPreview(connectFrom, p);
             return;
         }
     

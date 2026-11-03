@@ -12,7 +12,6 @@ import com.chien.flightcontrol.model.Node;
 
 
 public class FlightControlView extends JPanel {
-    private FlightControlController controller;
     private FlightControlModel model;
     
     private Point previewTo;
@@ -24,28 +23,22 @@ public class FlightControlView extends JPanel {
     public static final Stroke PREVIEW_STROKE = new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10f,
             new float[] { 8f, 8f }, 0f);
 
-    public FlightControlView(FlightControlController controller, FlightControlModel model) {
-        this.controller = controller;
+    public FlightControlView(FlightControlModel model) {
         this.model = model;
 
         setOpaque(true);
         setBackground(Color.WHITE);
         setPreferredSize(new java.awt.Dimension(800, 600));
     }
-
-    public FlightControlView(FlightControlModel controlModel) {
-        this.model = controlModel;
-    }
     
-    public void setPreviewPoints(Node from, Point to) {
+    public void setConnectionPreview(Node from, Point to) {
         this.previewFrom = from;
         this.previewTo = to;
         repaint();
     }
 
     
-
-    public void clearPreviewPoints() {
+    public void clearConnectionPreview() {
         this.previewFrom = null;
         this.previewTo = null;
         repaint();
